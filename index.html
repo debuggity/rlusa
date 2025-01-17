@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RLUSA - Ripple Ledger USA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts and optional FontAwesome for icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-O8Cs6GHhxaK1P3DatnUB4ah+DxnH9Cp99eapB5BH6UQ/HmWC15LPJL3N9y0f2KUnVlB9c+81jkAHfmUTNWIUZQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /****************************************
+     * GLOBAL RESETS & CORE STYLES
+     ****************************************/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #ffffff;
+        overflow-x: hidden;
+        position: relative;
+        /* More patriotic background: star pattern + subtle stripes */
+        background:
+            linear-gradient(
+            rgb(8, 11, 58),
+            rgb(65, 36, 36)
+            ),
+            url("https://www.transparenttextures.com/patterns/starring.png");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        cursor: url('assets/cursor.png') 32 30, auto;
+    }
+
+
+    a {
+      color: #ffe8e8;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /****************************************
+     * PATRIOTIC GRADIENT (reusable class)
+     ****************************************/
+    .patriotic-gradient {
+      background: linear-gradient(
+        90deg,
+        rgba(220, 20, 60, 1),
+        rgba(255, 255, 255, 1),
+        rgba(0, 0, 255, 1)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /****************************************
+     * HEADER / BANNER
+     ****************************************/
+    header {
+      position: relative;
+      text-align: center;
+      padding: 2rem 1rem;
+      overflow: hidden;
+    }
+
+    .banner {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /****************************************
+     * SECTION BASE
+     ****************************************/
+    .section {
+      position: relative;
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Heading style upgrade */
+    .section h2 {
+      position: relative;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border-left: 4px solid #ff0000;
+      border-right: 4px solid #0000ff;
+      border-radius: 8px;
+    }
+
+    /****************************************
+     * ABOUT SECTION
+     ****************************************/
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #about img {
+      flex: 1 1 280px;
+      max-width: 380px;
+      transform: translateY(0);
+      transition: transform 0.5s ease;
+    }
+    #about img:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    #about .text-bubbles {
+      flex: 1 1 380px;
+      display: grid;
+      gap: 1.5rem;
+    }
+    #about .bubble {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      line-height: 1.6;
+    }
+
+    /****************************************
+     * TOKENOMICS SECTION
+     * Bullet-style layout
+     ****************************************/
+    #tokenomics .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+
+    #tokenomics img {
+      flex: 1 1 280px;
+      max-width: 300px;
+      transform: rotate(0deg);
+      transition: transform 0.5s ease;
+    }
+    #tokenomics img:hover {
+      transform: rotate(-3deg) scale(1.05);
+    }
+
+    #tokenomics .bulleted {
+      flex: 1 1 500px;
+      background: rgba(255,255,255,0.07);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    #tokenomics .bulleted ul {
+      margin-left: 1.5rem;
+      list-style: inside;
+      line-height: 1.8;
+    }
+    #tokenomics .bulleted ul li {
+      margin-bottom: 1rem;
+    }
+
+    /****************************************
+     * COMMUNITY SECTION
+     * Social Buttons
+     ****************************************/
+    #community .content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    #community img {
+      max-width: 350px;
+      flex: 1 1 300px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      transition: transform 0.5s ease;
+    }
+    #community img:hover {
+      transform: scale(1.05);
+    }
+
+    #community .bubble {
+      flex: 1 1 400px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 0, 0, 0.07),
+        rgba(0, 0, 255, 0.07)
+      );
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      line-height: 1.8;
+    }
+
+    .social-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    .social-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /****************************************
+     * ROADMAP SECTION
+     * Timeline style
+     ****************************************/
+    #roadmap {
+      background: rgba(255,255,255,0.05);
+      border-top: 2px solid #222;
+      border-bottom: 2px solid #222;
+      padding-bottom: 3rem;
+    }
+
+    #roadmap .content {
+      display: grid;
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    /* Roadmap image up top for flair */
+    #roadmap img {
+      max-width: 300px;
+      transition: transform 0.8s ease;
+    }
+    #roadmap img:hover {
+      transform: translateY(-5px) rotate(-10deg);
+    }
+
+    /* Actual timeline for the roadmap steps */
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(255,255,255,0.07);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .step-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      min-width: 50px;
+      text-align: center;
+      background: linear-gradient(to right, #ff0000, #0000ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .step-desc {
+      line-height: 1.6;
+    }
+
+    /****************************************
+     * BUY SECTION
+     ****************************************/
+    #buy .content {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    #buy img {
+      flex: 1 1 280px;
+      max-width: 280px;
+      transition: transform 0.5s ease-in-out;
+    }
+    #buy img:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    #buy .text-bubbles {
+      flex: 1 1 400px;
+    }
+    #buy .bubble {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    /****************************************
+     * BUY BUTTON
+     ****************************************/
+    .buy-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(to right, #ff0000, #0000ff);
+      border-radius: 4px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+    }
+    .buy-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /****************************************
+     * FIREWORKS (Random bursts from cursor)
+     ****************************************/
+    .firework-spark {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      animation: spark-move 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes spark-move {
+      0% {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(
+          calc(-60px + 120px * var(--randX)),
+          calc(-60px + 120px * var(--randY))
+        );
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img class="banner" src="assets/banner.png" alt="RLUSA Banner" />
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section">
+    <h2><span class="patriotic-gradient">About RLUSA</span></h2>
+    <div class="content">
+      <img src="assets/about-us.png" alt="About RLUSA" />
+      <div class="text-bubbles">
+        <div class="bubble">
+          Our mission is as intrepid as our faith in sovereignty. RL = “Ripple
+          Ledger,” fused with the abiding spirit of the <em>U.S. of A.</em>
+        </div>
+        <div class="bubble">
+          We’re forging a new
+          path, we’re inviting the entire crypto sphere to rally for unstoppable
+          liberty.
+        </div>
+        <div class="bubble">
+          That’s how RLUSA resonates: freedom-coded from the ground up, and
+          there’s no turning back.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS SECTION -->
+  <section id="tokenomics" class="section">
+    <h2><span class="patriotic-gradient">Tokenomics</span></h2>
+    <div class="content">
+      <div class="bulleted">
+        <ul>
+          <li><strong>Minted Supply:</strong> Inspired by foundational ideals—transparency & equal footing.</li>
+          <li><strong>Distribution:</strong> Emphasizes fairness, no monarchy or hidden whales pulling the strings.</li>
+          <li><strong>Community Driven:</strong> Proposals, improvements, and updates come from a strong team of patriots.</li>
+          <li><strong>Long-Term Vision:</strong> Stable growth and real-world utility are prime mandates.</li>
+        </ul>
+      </div>
+      <img src="assets/tokenomics.png" alt="Tokenomics" />
+    </div>
+  </section>
+
+  <!-- COMMUNITY SECTION -->
+  <section id="community" class="section">
+    <h2><span class="patriotic-gradient">Join the Community</span></h2>
+    <div class="content">
+      <img src="assets/community.png" alt="Community" />
+      <div class="bubble">
+        This movement is for everyone—like the promise of life, liberty, and
+        the pursuit of comedic gold. Our community is wide open, from sea to
+        shining ledger. 
+        <br><br>
+        Collaboration + conversation + comedic memes = trifecta
+        for unstoppable synergy.
+        <div class="social-buttons">
+          <a href="#" target="_blank" class="social-btn" aria-label="X/Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" target="_blank" class="social-btn" aria-label="Telegram">
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP SECTION -->
+  <section id="roadmap" class="section">
+    <h2><span class="patriotic-gradient">Roadmap</span></h2>
+    <div class="content">
+      <img src="assets/roadmap.png" alt="Roadmap" />
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">Phase 1</div>
+          <div class="step-desc">
+            Gather the memes, galvanize early supporters, and plant the first seeds of unstoppable freedom. 
+            Memetic synergy starts here.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">Phase 2</div>
+          <div class="step-desc">
+            Expand community channels, coordinate marketing efforts, and watch RLUSA gain traction across the chain.
+            USA patriots have the best memes.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">Phase 3</div>
+          <div class="step-desc">
+            Deploy advanced features, incorporate real-world utility, and see RLUSA become the cultural phenomenon 
+            bridging memes and sovereignty.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">Phase 4</div>
+          <div class="step-desc">
+            Full-on mainstream adoption: from the corridors of power to everyday folks. 
+            Freedoms, rocket ships, and star-spangled destiny for all.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY SECTION -->
+  <section id="buy" class="section">
+    <h2><span class="patriotic-gradient">Buy RLUSA</span></h2>
+    <div class="content">
+      <img src="assets/buy.png" alt="Buy RLUSA" />
+      <div class="text-bubbles">
+        <div class="bubble">
+          If you’re still reading, you’re either a patriot at heart or you just
+          can’t resist a spectacle. Either way, now’s your time to stake a claim
+          in RLUSA.
+        </div>
+        <div class="bubble">
+          This is your chance to be part of a coin based on the greatest country in existence. Smash that
+          button, seize the day, and let freedom ring across the blockchain.
+        </div>
+        <a class="buy-btn" href="#">Buy RLUSA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIREWORKS CURSOR (few random bursts) -->
+  <script>
+    document.addEventListener('mousemove', (e) => {
+      for (let i = 0; i < 3; i++) {
+        createSpark(e.pageX, e.pageY);
+      }
+    });
+
+    function createSpark(x, y) {
+      const spark = document.createElement('div');
+      spark.className = 'firework-spark';
+      spark.style.left = x + 'px';
+      spark.style.top = y + 'px';
+      spark.style.backgroundColor = getRandomColor();
+
+      // random directions
+      const randX = Math.random();
+      const randY = Math.random();
+      spark.style.setProperty('--randX', randX);
+      spark.style.setProperty('--randY', randY);
+
+      document.body.appendChild(spark);
+
+      spark.addEventListener('animationend', () => {
+        spark.remove();
+      });
+    }
+
+    function getRandomColor() {
+      const colors = [
+        '#ff0000', // Red
+        '#ffffff', // White
+        '#0000ff'  // Blue
+      ];
+
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
