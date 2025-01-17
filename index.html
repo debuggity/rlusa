@@ -236,21 +236,43 @@
       justify-content: center;
     }
 
+    /* Social button base */
     .social-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      color: #fff;
-      transition: background 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(
+        75deg,
+        red 25%,
+        white 25%,
+        white 50%,
+        white 50%,
+        white 75%,
+        blue 75%
+        );
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .social-btn:hover {
-      background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
     }
+
+    /* Icon within the button */
+    .social-icon {
+    width: 70%;
+    height: 70%;
+    object-fit: contain; /* Ensure the entire image fits inside */
+    position: relative;
+    z-index: 2; /* Ensure it's above the background */
+    }
+
 
     /****************************************
      * ROADMAP SECTION
@@ -452,13 +474,13 @@
         Collaboration + conversation + comedic memes = trifecta
         for unstoppable synergy.
         <div class="social-buttons">
-          <a href="#" target="_blank" class="social-btn" aria-label="X/Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" target="_blank" class="social-btn" aria-label="Telegram">
-            <i class="fab fa-telegram-plane"></i>
-          </a>
-        </div>
+            <a href="#" target="_blank" class="social-btn" aria-label="X/Twitter">
+              <img src="assets/x.png" alt="X/Twitter" class="social-icon" />
+            </a>
+            <a href="#" target="_blank" class="social-btn" aria-label="Telegram">
+              <img src="assets/telegram.png" alt="Telegram" class="social-icon" />
+            </a>
+        </div>          
       </div>
     </div>
   </section>
